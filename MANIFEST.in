@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include base_vat *.css
+recursive-include base_vat *.csv
+recursive-include base_vat *.html
+recursive-include base_vat *.ico
+recursive-include base_vat *.js
+recursive-include base_vat *.json
+recursive-include base_vat *.md
+recursive-include base_vat *.png
+recursive-include base_vat *.py
+recursive-include base_vat *.svg
+recursive-include base_vat *.txt
+recursive-exclude base_vat *.pyc

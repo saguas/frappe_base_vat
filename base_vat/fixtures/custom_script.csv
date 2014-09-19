@@ -1,0 +1,124 @@
+"Data Import Template"
+"Table:","Custom Script"
+""
+""
+"Notes:"
+"Please do not change the template headings."
+"First data column must be blank."
+"If you are uploading new records, leave the ""name"" (ID) column blank."
+"If you are uploading new records, ""Naming Series"" becomes mandatory, if present."
+"Only mandatory fields are necessary for new records. You can delete non-mandatory columns if you wish."
+"For updating, you can update only selective columns."
+"You can only upload upto 5000 records in one go. (may be less in some cases)"
+""
+"DocType:","Custom Script","",""
+"Column Labels:","ID","DocType","Script"
+"Column Name:","name","dt","script"
+"Mandatory:","Yes","No","No"
+"Type:","Data (text)","Link","Code"
+"Info:","","Valid DocType",""
+"Start entering data below this line"
+"","""Customer-Client""","Customer","cur_frm.cscript.onload = function(doc, dt, name){
+    console.log(""loading "", doc);
+}
+
+cur_frm.cscript.custom_refresh = function(doc, dt, dn) {
+     console.log(""refreshing "", doc);
+     //var vat = cur_frm.get_field(""vat_or_nif"").value
+     var vat = doc.vat_or_nif;
+     console.log(""before if  "", doc.curr_display);
+	 if(doc.vat_changed){
+	     if(cur_frm.cscript._valid(doc)){
+	        cur_frm.fields_dict['vat_or_nif'].$wrapper.removeClass('has-warning has-success has-error');
+	        cur_frm.fields_dict['vat_or_nif'].$wrapper.addClass('has-success');
+	     }else if(vat && !is_null(vat)){
+	        cur_frm.fields_dict['vat_or_nif'].$wrapper.removeClass('has-warning has-success has-error');
+	        cur_frm.fields_dict['vat_or_nif'].$wrapper.addClass('has-warning');
+	    }else{
+	        cur_frm.fields_dict['vat_or_nif'].$wrapper.removeClass('has-warning has-success has-error');
+	    }
+    }else if(doc.curr_display){
+    	console.log(""entrou "", doc.curr_display);
+    	cur_frm.fields_dict['vat_or_nif'].$wrapper.removeClass('has-warning has-success has-error');
+        cur_frm.fields_dict['vat_or_nif'].$wrapper.addClass(cstr(doc.curr_display));
+    }else{
+    	cur_frm.fields_dict['vat_or_nif'].$wrapper.removeClass('has-warning has-success has-error');
+    }
+};
+
+cur_frm.cscript._valid = function(doc){
+     var ret = false;
+     console.log(""_valid "", doc.vat_or_nif);
+     //var vat = cur_frm.get_field(""vat_or_nif"").value;
+	 var vat = doc.vat_or_nif;
+     if(vat && doc.vat_checked && !is_null(vat.trim())){
+           ret = true;
+     }
+
+    return ret;
+}
+
+cur_frm.cscript.custom_validate = function(doc) {
+	var vat = doc.vat_or_nif;
+
+	if(!is_null(vat) && !doc.vat_checked && doc.__unsaved){
+		msgprint(""Tax Identification Number needs to be validated before submit!"", ""Tax Identification Number"");
+                validated = false;
+	}
+
+};
+
+cur_frm.cscript[""vat_or_nif""] = function(doc, dt, name){
+    console.log(""vat_or_not input change "", this);
+    //var vat = cur_frm.get_field(""territory"").value;
+    var vat = doc.vat_or_nif;
+    doc.vat_checked = false;
+    if(vat && is_null(vat.trim())){
+       cur_frm.fields_dict['vat_or_nif'].$wrapper.removeClass('has-warning has-success has-error');
+    }else if(vat){
+       cur_frm.fields_dict['vat_or_nif'].$wrapper.addClass('has-warning');
+       doc.vat_or_nif = vat.trim().toUpperCase();
+       cur_frm.refresh_field('vat_or_nif');
+       doc.vat_changed = true;
+       doc.curr_display = 'has-warning';
+    }else{
+       cur_frm.fields_dict['vat_or_nif'].$wrapper.removeClass('has-warning has-success has-error');
+    }
+}
+
+cur_frm.cscript[""validate_vat""] = function(doc, dt, name){
+  console.log(""onclick "", name);
+  //var nif = cur_frm.get_field(""vat_or_nif"").value;
+  var nif = doc.vat_or_nif;
+  //cur_frm.toggle_display('territory', true);
+  //cur_frm.toggle_enable(['vat_or_nif'], false);
+  var company = doc.company;
+  console.log(""nif "", company);
+  if(nif){
+      frappe.call({
+            ""method"": ""base_vat.vat.vat_validation.validate_vat"",
+            args: {
+                nif: nif.trim(),
+                company: company
+            },
+            callback: function (data) {
+                  if(data.message === ""OK""){
+                      cur_frm.fields_dict['vat_or_nif'].$wrapper.removeClass('has-warning has-error');
+                      cur_frm.fields_dict['vat_or_nif'].$wrapper.addClass('has-success');
+                      doc.vat_checked = true;
+                      doc.vat_changed = false;
+                      doc.curr_display = 'has-success';
+                  }else{
+                      cur_frm.fields_dict['vat_or_nif'].$wrapper.removeClass('has-warning has-success');
+                      cur_frm.fields_dict['vat_or_nif'].$wrapper.addClass('has-error');
+                      doc.curr_display = 'has-warning';
+                      doc.vat_changed = false;
+                      doc.vat_checked = false;
+                  }
+                  msgprint(data.message, ""Tax Identification Number Validation"");
+            }
+        });
+  }
+}
+"
+"","""Account-Client""","Website Chat Agent",""
