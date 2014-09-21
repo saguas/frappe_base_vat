@@ -22,7 +22,7 @@ bench get-app base_vat [https://github.com/saguas/frappe_base_vat.git](https://g
 
 ### How to:
 
-# enter vat number
+#### enter vat number
 
 ![Selling-->Customer-->Make a new Cusmtomer](base_vat/public/images/vat.png)
 
@@ -35,7 +35,7 @@ If your company want that the vat number would be checked against [EU's VIES ser
 
 ![Setup-->Masters-->Company](base_vat/public/images/vies.png)
 
-#### From another app
+### From another app
 
 If you need check the vat number on your own module, just call the whitelist function <i>validate_vat</i> (PATH: base_vat.vat.vat_validation.validate_vat) and pass the vat number and company name as arguments. See Customer Script (Customer-Client) <i>validate_vat</i> function.
 
