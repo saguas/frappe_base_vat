@@ -32,7 +32,7 @@ If you want you can click on the check box in the company that you want check th
 
 ![Setup-->Masters-->Company](base_vat/public/images/vies.png)
 
-### Developers
+### From another module code
 
 If you need check the vat number on your own module, just call the whitelist function <i>validate_vat</i> (PATH: base_vat.vat.vat_validation.validate_vat) and pass the vat number and company name as arguments. See Customer Script (Customer-Client) <i>validate_vat</i> function.
 
