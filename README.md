@@ -26,14 +26,14 @@ bench get-app base_vat [https://github.com/saguas/frappe_base_vat.git](https://g
 
 ![Selling-->Customer-->Make a new Cusmtomer](base_vat/public/images/vat.png)
 
-After install, this module provide a text box on the customer to enter the vat number.
+After install, this module provide a text box on the customer (Selling/Customer) to enter the vat number.
 Just enter the vat (TIF) number. Optionally click Validate VAT button to quickly (client side and before save) check if the number is valid.
 Either way, the number will be checked on the server before save to database. 
 
 #### enforce check against EU's VIES service
 If your company want that the vat number would be checked against [EU's VIES service] (http://ec.europa.eu/taxation_customs/taxation/vat/traders/vat_number/index_en.htm), then you must enforce that, clicking on the check box in that company document (Setup->Masters->Company).
 
-![Setup-->Masters-->Company](base_vat/public/images/vies.png)
+![Setup/Masters/Company](base_vat/public/images/vies.png)
 
 ### From another app
 
