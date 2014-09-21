@@ -12,7 +12,7 @@ This app check if the VAT / NIF is correct. This app use module vatnumber to che
 This is un adaptation from this work: [https://github.com/odoo/odoo/tree/master/addons/base_vat](https://github.com/odoo/odoo/tree/master/addons/base_vat)
 
 ### Depends on
-- frappe/erpnext
+- frappe/erpnext (To install: (https://github.com/frappe/bench) )
 - python module vatnumber (First do <i>bench shell</i> and then <i>easy_install vatnumber or pip install vatnumber</i>.)
 
 ### Instalation
