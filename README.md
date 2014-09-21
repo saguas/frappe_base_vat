@@ -30,12 +30,12 @@ After install, this module provide a text box on the customer to enter the vat n
 Just enter the vat (TIF) number. Optionally click Validate VAT button to quickly (client side and before save) check if the number is valid.
 Either way, the number will be checked on the server before save to database. 
 
-# enforce check against EU's VIES service
+#### enforce check against EU's VIES service
 If your company want that the vat number would be checked against [EU's VIES service] (http://ec.europa.eu/taxation_customs/taxation/vat/traders/vat_number/index_en.htm), then you must enforce that, clicking on the check box in that company document (Setup->Masters->Company).
 
 ![Setup-->Masters-->Company](base_vat/public/images/vies.png)
 
-### From another app
+#### From another app
 
 If you need check the vat number on your own module, just call the whitelist function <i>validate_vat</i> (PATH: base_vat.vat.vat_validation.validate_vat) and pass the vat number and company name as arguments. See Customer Script (Customer-Client) <i>validate_vat</i> function.
 
