@@ -31,7 +31,7 @@ Just enter the vat (TIF) number. Optionally click Validate VAT button to quickly
 Either way, the number will be checked on the server before save to database. 
 
 #### enforce check against EU's VIES service
-If your company want that the vat number would be checked against [EU's VIES service] (http://ec.europa.eu/taxation_customs/taxation/vat/traders/vat_number/index_en.htm), then you must enforce that, clicking on the check box in that company document (Setup->Masters->Company).
+If your company want that the vat number would be checked against [EU's VIES service] (http://ec.europa.eu/taxation_customs/taxation/vat/traders/vat_number/index_en.htm), then you must enforce that, clicking on the check box in that company document (Setup/Masters/Company).
 
 ![Setup/Masters/Company](base_vat/public/images/vies.png)
 
