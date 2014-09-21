@@ -28,7 +28,7 @@ After install, this module provide a text box on the customer to enter the vat n
 Just enter the vat (TIF) number. Optionally click Validate VAT button to quickly (client side and before save) check if the number is valid.
 Either way, the number will be checked on the server before save to database. 
 
-If you want you can click on the check box in the company that you want check the vat number against [EU's VIES service] (http://ec.europa.eu/taxation_customs/taxation/vat/traders/vat_number/index_en.htm).
+If your company want that the vat number would be checked against [EU's VIES service] (http://ec.europa.eu/taxation_customs/taxation/vat/traders/vat_number/index_en.htm), then you must enforce that, clicking on the check box in the company (Setup->Masters->Company).
 
 ![Setup-->Masters-->Company](base_vat/public/images/vies.png)
 
