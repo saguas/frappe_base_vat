@@ -13,7 +13,7 @@ This is un adaptation from this work: [https://github.com/odoo/odoo/tree/master/
 
 ### Depends on
 - frappe/erpnext
-- python module vatnumber (First do bench shell and then easy_install vatnumber or pip install vatnumber.)
+- python module vatnumber (First do <i>bench shell</i> and then <i>easy_install vatnumber or pip install vatnumber</i>.)
 
 ### Instalation
 
