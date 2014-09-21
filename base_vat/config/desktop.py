@@ -4,7 +4,7 @@ def get_data():
 	return {
 		"Base VAT": {
 			"color": "#C0C0C0",
-			"icon": "icon-credit-card",
+			"icon": "fa-bus",
 			"type": "module",
 			"label": _("Base VAT")
 		}

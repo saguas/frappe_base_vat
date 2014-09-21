@@ -11,6 +11,19 @@ This app check if the VAT / NIF is correct. This app use module vatnumber to che
 
 This is un adaptation from this work: [https://github.com/odoo/odoo/tree/master/addons/base_vat](https://github.com/odoo/odoo/tree/master/addons/base_vat)
 
+### Depends on
+- frappe/erpnext
+- vatnumber
+
+### Instalation
+
+bench get-app base_vat [https://github.com/saguas/frappe_base_vat.git](https://github.com/saguas/frappe_base_vat.git)
+ 
+
+### How to
+
+![Selling-->Customer-->Make a new Cusmtomer](base_vat/public/images/vat.png)
+
 ### Frappe Framework
 
 For details and documentation, see the website
