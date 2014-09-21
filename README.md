@@ -24,7 +24,7 @@ bench get-app base_vat [https://github.com/saguas/frappe_base_vat.git](https://g
 
 ![Selling-->Customer-->Make a new Cusmtomer](base_vat/public/images/vat.png)
 
-After install this module provide a text box on the customer to enter the vat number.
+After install, this module provide a text box on the customer to enter the vat number.
 Just enter the vat (TIF) number. Optionally click Validate VAT button to quickly (client side and before save) check if the number is valid.
 If you don't click, the number will be checked on the server before save to database. 
 
