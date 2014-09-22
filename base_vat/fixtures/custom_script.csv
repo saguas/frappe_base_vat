@@ -18,9 +18,7 @@
 "Type:","Data (text)","Link","Code"
 "Info:","","Valid DocType",""
 "Start entering data below this line"
-"","""Account-Client""","Website Chat Agent",""
 "","""Customer-Client""","Customer","cur_frm.cscript.custom_refresh = function(doc, dt, dn) {
-     console.log(""refreshing "", doc);
      var vat = doc.vat_or_nif;
      if(doc.vat_changed){
 	     if(cur_frm.cscript._valid(doc)){
@@ -96,3 +94,4 @@ cur_frm.cscript[""validate_vat""] = function(doc, dt, name){
         });
   }
 }"
+"","""Account-Client""","Website Chat Agent",""
