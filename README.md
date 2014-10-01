@@ -35,6 +35,11 @@ If your company want that the vat number would be checked against [EU's VIES ser
 
 ![Setup/Masters/Company](base_vat/public/images/vies.png)
 
+###Note
+
+Base vat check if another customer already has that number. If so than customer do not will be saved.
+Some times customers are registers by another name, in that case base vat return the name of that cliente for double check.
+
 ### From another app
 
 If you need check the vat number on your own module, just call the whitelist function <i>validate_vat</i> (PATH: base_vat.vat.vat_validation.validate_vat) and pass the vat number and company name as arguments. See Customer Script (Customer-Client) <i>validate_vat</i> function.
