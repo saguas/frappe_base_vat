@@ -18,6 +18,7 @@
 "Type:","Data (text)","Link","Code"
 "Info:","","Valid DocType",""
 "Start entering data below this line"
+"","""Item-Client""","Item",""
 "","""Customer-Client""","Customer","cur_frm.cscript.custom_refresh = function(doc, dt, dn) {
      var vat = doc.vat_or_nif;
      if(doc.vat_changed){
@@ -89,7 +90,7 @@ cur_frm.cscript[""validate_vat""] = function(doc, dt, name){
                       doc.vat_changed = false;
                       doc.vat_checked = false;
                   }
-                  msgprint(data.message, ""Tax Identification Number Validation"");
+                  msgprint(data.message, __(""Tax Identification Number Validation""));
             }
         });
   }

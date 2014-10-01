@@ -5,6 +5,7 @@ import logging
 import string
 import datetime
 import re
+import json
 
 from frappe import _
 from frappe.model.document import Document
@@ -297,17 +298,45 @@ class VatValidation():
 validation = VatValidation()
 
 @frappe.whitelist(allow_guest=True)
-def validate_vat(nif, company):
-	return validation.button_check_vat(nif, company)
+def validate_vat(doc):
+    if isinstance(doc, basestring):
+        doc = json.loads(doc)
 
+    nif = doc.get('vat_or_nif')
+    company = doc.get('company')
+    ret = validation.button_check_vat(nif, company)
+    _logger.info("whitelist nif {0}".format(nif))
+    check_duplo_vat(doc)
+    return ret 
 
 
 def validate_server_vat(doc, method):
-	nif = doc.get('vat_or_nif')
-	company = doc.get('company')
-	if(nif and validate_vat(nif, company) != 'OK'):
-		frappe.throw(_("Tax Identification Number {0} not valid").format(nif),
-						frappe.InvalidStatusError)
+    
+    nif = doc.get('vat_or_nif')
+    _logger.info("doc validate server vat is {0}".format(doc))
+    if(nif and validate_vat(doc) != 'OK'):
+        frappe.throw(_("Tax Identification Number {0} not valid").format(nif),frappe.DataError)
 
 
+def check_duplo_vat(doc):
+    
+    nif = doc.get('vat_or_nif')
+    if not nif:#is possible nif to be null
+        return
+    
+    _logger.info("doc is {0}".format(doc))
+    
+    customer = frappe.db.sql("""select customer_name from `tabCustomer` where vat_or_nif = %s """, (nif), as_dict=True)#only one must exist
+    _logger.info("cursor for customer_name is {0}".format(customer))
+    customer_name = customer[0].get('customer_name') if len(customer) > 0 else None
+    cname = doc.get("customer_name")
+    if(customer_name and customer_name == cname):#nif already exist but is for the same customer
+        return
+    elif(customer_name):#nif already exists but another customer already has it
+        frappe.throw(_("Tax Identification Number {nif} already exist for customer {name} check if the name is correct").format(nif=nif, name=customer_name),frappe.DataError)
+    else:#no customer exist with this nif. Save it
+        return
+    
+    
+    
 

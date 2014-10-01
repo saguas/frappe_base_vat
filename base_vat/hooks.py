@@ -8,6 +8,9 @@ app_email = "luisfmfernandes@gmail.com"
 app_url = "http://localhost"
 app_version = "0.0.1"
 
+
+app_include_js = "/assets/base_vat/js/vat_validation.js"
+
 doc_events = {
 	"Customer": {
 		"validate": "base_vat.vat.vat_validation.validate_server_vat"
