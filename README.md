@@ -38,7 +38,7 @@ If your company want that the vat number would be checked against [EU's VIES ser
 ###Note
 
 Base vat check if another customer already has that number. If so than customer do not will be saved.
-Some times customers are registers by another name, in that case base vat return the name of that cliente for double check.
+Because sometimes customers are registers by another name, in that case base vat return the name of that cliente for double check.
 
 ### From another app
 
