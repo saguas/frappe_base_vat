@@ -33,19 +33,3 @@ cur_frm.cscript[""vat_or_nif""] = function(doc, dt, dn){
 cur_frm.cscript[""validate_vat""] = function(doc, dt, dn){
     cur_frm.cscript.vatapp.on_button_validate_vat(doc, dt, dn);
 }"
-"","""Account-Client""","Website Chat Agent",""
-"","""Item-Client""","Item",""
-"","""Product Template-Client""","Product Template",""
-"","""Domain Type-Client""","Domain Type","// make a field read-only after saving
-cur_frm.cscript.onload = function(doc) {
-     
-     //new_doc(""Item"");
-     /*$(document).on(""newdoc"", function(ev,obj){
-         console.log(""doc name "", obj);
-         obj.cur_frm.doc.item_code = 17;
-         //cur_frm.set_value(""item_code"", 999);
-         obj.cur_frm.refresh_field('item_code');
-         //cur_frm.email_doc(""Olá Saguas"");
-     });*/
-
-}"
