@@ -1,6 +1,6 @@
 ### Introduction
 
-This app check if the VAT / NIF is correct. This app use module vatnumber to check the VAT for the particular country and optionaly will be fully validated against EU's VIES service.
+This app check if the VAT / NIF is correct. It depends of vatnumber module to check the VAT / NIF for the particular country and optionaly will be fully validated against EU's VIES service.
 
 This is un adaptation from this work: [https://github.com/odoo/odoo/tree/master/addons/base_vat](https://github.com/odoo/odoo/tree/master/addons/base_vat)
 
