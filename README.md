@@ -1,6 +1,6 @@
 ### Introduction
 
-This is my fisrt application in frappe framework. I don't give ANY WARRANTY, but it works!!!.
+This is my first application in frappe framework. I don't give ANY WARRANTY, but it works!!!.
 
 I made this because it will be necessary in my country to operate, this and other things i intent to do for this framework.
 
