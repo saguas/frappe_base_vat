@@ -1,6 +1,6 @@
 ### Introduction
 
-This app check if the VAT / NIF is correct. It depends of vatnumber module to check the VAT / NIF for the particular country and optionaly will be fully validated against EU's VIES service.
+This app check if the VAT identification number / NIF is correct. It depends of vatnumber module to check the VAT / NIF for the particular country and optionaly will be fully validated against EU's VIES service.
 
 This is un adaptation from this work: [https://github.com/odoo/odoo/tree/master/addons/base_vat](https://github.com/odoo/odoo/tree/master/addons/base_vat)
 
@@ -19,7 +19,7 @@ This is un adaptation from this work: [https://github.com/odoo/odoo/tree/master/
 
 ![Selling-->Customer-->Make a new Cusmtomer](base_vat/public/images/vat.png)
 
-After install, this module provide a text box on the customer (Selling/Customer) to enter the vat number.
+After install, this module provide a text box on the customer (Selling/Customer) to enter the vat identification number.
 Just enter the vat (TIF) number. Optionally click Validate VAT button to quickly (client side and before save) check if the number is valid.
 Either way, the number will be checked on the server before save to database. 
 
