@@ -18,6 +18,6 @@ doc_events = {
 }
 
 fixtures = [
-	"Custom Field",
-	"Custom Script"
+	["Custom Script", {"name":["Customer-Client"]}],
+	["Custom Field", {"name":["Customer-vat_or_nif", "Company-vies_vat_check", "Customer-validate_vat"]}]
 ]
