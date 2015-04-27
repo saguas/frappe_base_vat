@@ -172,11 +172,10 @@ class VatValidation():
 			msg = self._construct_constraint_msg(nif)
 			#frappe.throw(_("Error " + msg))
 			return msg
-		return 'OK'
+		return _('This VAT number is valid.')
 
 	def check_vat(self, nif):
 		user_company_vies = frappe.db.get_value('Company', self.company, 'vies_vat_check')
-		print "user_company_vies {} company {}".format(user_company_vies, self.company)
 		if user_company_vies:
 			# force full VIES online check
 			check_func = self.vies_vat_check
