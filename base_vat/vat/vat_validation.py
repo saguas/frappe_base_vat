@@ -21,38 +21,38 @@ except ImportError:
 
 
 _ref_vat = {
-	'at': 'ATU12345675',
-	'be': 'BE0477472701',
-	'bg': 'BG1234567892',
-	'ch': 'CHE-123.456.788 TVA or CH TVA 123456', #Swiss by Yannick Vaucher @ Camptocamp
-	'cy': 'CY12345678F',
-	'cz': 'CZ12345679',
-	'de': 'DE123456788',
-	'dk': 'DK12345674',
-	'ee': 'EE123456780',
-	'el': 'EL12345670',
-	'es': 'ESA12345674',
-	'fi': 'FI12345671',
-	'fr': 'FR32123456789',
-	'gb': 'GB123456782',
-	'gr': 'GR12345670',
-	'hu': 'HU12345676',
-	'hr': 'HR01234567896', # Croatia, contributed by Milan Tribuson
-	'ie': 'IE1234567FA',
-	'it': 'IT12345670017',
-	'lt': 'LT123456715',
-	'lu': 'LU12345613',
-	'lv': 'LV41234567891',
-	'mt': 'MT12345634',
-	'mx': 'MXABC123456T1B',
-	'nl': 'NL123456782B90',
-	'no': 'NO123456785',
-	'pl': 'PL1234567883',
-	'pt': 'PT123456789',
-	'ro': 'RO1234567897',
-	'se': 'SE123456789701',
-	'si': 'SI12345679',
-	'sk': 'SK0012345675',
+    'at': 'ATU12345675',
+    'be': 'BE0477472701',
+    'bg': 'BG1234567892',
+    'ch': 'CHE-123.456.788 TVA or CH TVA 123456', #Swiss by Yannick Vaucher @ Camptocamp
+    'cy': 'CY12345678F',
+    'cz': 'CZ12345679',
+    'de': 'DE123456788',
+    'dk': 'DK12345674',
+    'ee': 'EE123456780',
+    'el': 'EL12345670',
+    'es': 'ESA12345674',
+    'fi': 'FI12345671',
+    'fr': 'FR32123456789',
+    'gb': 'GB123456782',
+    'gr': 'GR12345670',
+    'hu': 'HU12345676',
+    'hr': 'HR01234567896', # Croatia, contributed by Milan Tribuson
+    'ie': 'IE1234567T',
+    'it': 'IT12345670017',
+    'lt': 'LT123456715',
+    'lu': 'LU12345613',
+    'lv': 'LV41234567891',
+    'mt': 'MT12345634',
+    'mx': 'MXABC123456T1B',
+    'nl': 'NL123456782B90',
+    'no': 'NO123456785',
+    'pl': 'PL1234567883',
+    'pt': 'PT123456789',
+    'ro': 'RO1234567897',
+    'se': 'SE123456789701',
+    'si': 'SI12345679',
+    'sk': 'SK0012345675',
 }
 
 def exception_to_unicode(e):
@@ -241,35 +241,6 @@ class VatValidation():
 			csum = sum([int(num[i]) * factor[i] for i in range(8)])
 			check = (11 - (csum % 11)) % 11
 			return check == int(num[8])
-		return False
-
-	def _ie_check_char(self, vat):
-		vat = vat.zfill(8)
-		extra = 0
-		if vat[7] not in ' W':
-			if vat[7].isalpha():
-				extra = 9 * (ord(vat[7]) - 64)
-			else:
-				# invalid
-				return -1
-		checksum = extra + sum((8-i) * int(x) for i, x in enumerate(vat[:7]))
-		return 'WABCDEFGHIJKLMNOPQRSTUV'[checksum % 23]
-
-	def check_vat_ie(self, vat):
-		""" Temporary Ireland VAT validation to support the new format
-		introduced in January 2013 in Ireland, until upstream is fixed.
-		TODO: remove when fixed upstream"""
-		if len(vat) not in (8, 9) or not vat[2:7].isdigit():
-			return False
-		if len(vat) == 8:
-			# Normalize pre-2013 numbers: final space or 'W' not significant
-			vat += ' '
-		if vat[:7].isdigit():
-			return vat[7] == self._ie_check_char(vat[:7] + vat[8])
-		elif vat[1] in (string.ascii_uppercase + '+*'):
-			# Deprecated format
-			# See http://www.revenue.ie/en/online/third-party-reporting/reporting-payment-details/faqs.html#section3
-			return vat[7] == self._ie_check_char(vat[2:7] + vat[0] + vat[8])
 		return False
 
 	# Mexican VAT verification, contributed by <moylop260@hotmail.com>
