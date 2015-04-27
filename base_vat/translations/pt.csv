@@ -1,0 +1,5 @@
+Base VAT,Base NIF
+Error ,
+Tax Identification Number {0} not valid,Número de identificação fiscal (NIF) {0} não é válido
+Tax Identification Number {nif} already exist for customer {name} check if the name is correct,Número de identificação fiscal (NIF) {nif} já existe para o cliente {name} verifique se o nome está correto
+This VAT number does not seem to be valid.\nNote: the expected format is %s,Este número de contribuinte (NIB) não parece ser válido.Nota: o formato experado é %s

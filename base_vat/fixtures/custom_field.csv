@@ -16,11 +16,12 @@
 "Column Name:","name","dt","fieldtype","label","insert_after","precision","options","description","fieldname","permlevel","reqd","read_only","ignore_user_permissions","width","default","hidden","depends_on","print_hide","no_copy","allow_on_submit","in_filter","in_list_view","report_hide"
 "Mandatory:","Yes","Yes","Yes","No","No","No","No","No","No","No","No","No","No","No","No","No","No","No","No","No","No","No","No"
 "Type:","Data (text)","Link","Select","Data","Select","Select","Text","Text","Data","Int","Check","Check","Check","Data","Text","Check","Data","Check","Check","Check","Check","Check","Check"
-"Info:","","Valid DocType","One of: Button, Check, Code, Column Break, Currency, Data, Date, Datetime, Dynamic Link, Float, HTML, Image, Int, Link, Long Text, Password, Percent, Read Only, Section Break, Select, Small Text, Table, Text, Text Editor, Time","","","One of: 1, 2, 3, 4, 5, 6","","","","Integer","0 or 1","0 or 1","0 or 1","","","0 or 1","","0 or 1","0 or 1","0 or 1","0 or 1","0 or 1","0 or 1"
+"Info:","","Valid DocType","One of: Button, Check, Code, Column Break, Currency, Data, Date, Datetime, Dynamic Link, Float, HTML, Image, Int, Link, Long Text, Password, Percent, Read Only, Section Break, Select, Small Text, Table, Text, Text Editor, Time","","","One of: 1, 2, 3, 4, 5, 6, 7, 8, 9","","","","Integer","0 or 1","0 or 1","0 or 1","","","0 or 1","","0 or 1","0 or 1","0 or 1","0 or 1","0 or 1","0 or 1"
 "Start entering data below this line"
+"","""User-karma""","User","Int","Karma","github_username","","","","karma",0,0,0,0,"","0",0,"",0,0,0,0,0,0
+"","""Customer-validate_vat""","Customer","Button","Validate VAT","vat_or_nif","","","Validate the VAT number.","validate_vat",0,0,0,0,"","",0,"",0,0,0,0,0,0
+"","""Company-vies_vat_check""","Company","Check","VIES VAT Check","country","","","If checked, Partners VAT numbers will be fully validated against EU's VIES service rather than via a simple format validation (checksum).","vies_vat_check",0,0,0,0,"","",0,"",0,0,0,0,0,0
 "","""Customer-vat_or_nif""","Customer","Data","TIF","territory","","","Check the VAT/NIF number depending of the country.
 Ex. PT123456789.
 Enter VAT number if this Customer is subjected to the VAT. It will be used for the VAT legal statement.","vat_or_nif",0,0,0,0,"","",0,"",0,0,0,0,0,0
-"","""Company-vies_vat_check""","Company","Check","VIES VAT Check","country","","","If checked, Partners VAT numbers will be fully validated against EU's VIES service rather than via a simple format validation (checksum).","vies_vat_check",0,0,0,0,"","",0,"",0,0,0,0,0,0
-"","""Customer-validate_vat""","Customer","Button","Validate VAT","vat_or_nif","","","Validate the VAT number.","validate_vat",0,0,0,0,"","",0,"",0,0,0,0,0,0
-"","""User-karma""","User","Int","Karma","github_username","","","","karma",0,0,0,0,"","0",0,"",0,0,0,0,0,0
+"","""File Data-attached_to_report_name""","File Data","Data","Attached To Report Name","file_url","","","Name of the parent report.","attached_to_report_name",0,0,1,0,"","",0,"",0,0,0,0,1,0
