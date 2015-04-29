@@ -3,6 +3,9 @@ import os
 
 version = '0.0.2'
 
+with open("requirements.txt", "r") as f:
+	install_requires = f.readlines()
+
 setup(
     name='base_vat',
     version=version,
@@ -12,5 +15,5 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     include_package_data=True,
-    install_requires=["frappe","vatnumber"],
+    install_requires=install_requires
 )
