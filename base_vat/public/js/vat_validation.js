@@ -60,7 +60,6 @@ frappe.base_vat.Customer = Class.extend({
         on_button_validate_vat: function(doc, dt, name){
               var nif = doc.vat_or_nif;
               var company = doc.company;
-              console.log("JSON.stringify(doc) ", JSON.stringify(doc));
               if(nif){
                   frappe.call({
                         "method": "base_vat.vat.vat_validation.validate_vat",
