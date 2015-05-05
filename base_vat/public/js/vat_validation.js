@@ -69,7 +69,7 @@ frappe.base_vat.Customer = Class.extend({
                             doc: JSON.stringify(doc)
                         },
                         callback: function (data) {
-                              if(data.message === "OK"){
+                              if(data.message.status === 'OK'){
                                   cur_frm.fields_dict['vat_or_nif'].$wrapper.removeClass('has-warning has-error');
                                   cur_frm.fields_dict['vat_or_nif'].$wrapper.addClass('has-success');
                                   doc.vat_checked = true;
