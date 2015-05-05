@@ -82,7 +82,7 @@ frappe.base_vat.Customer = Class.extend({
                                   doc.vat_changed = false;
                                   doc.vat_checked = false;
                               }
-                              msgprint(data.message, __("Tax Identification Number Validation"));
+                              msgprint(data.message.msg, __("Tax Identification Number Validation"));
                         }
                     });
               }
