@@ -325,7 +325,7 @@ def validate_server_vat(doc, method):
 	if nif:
 		nif = nif.strip(' \t\n\r')
 	_logger.info("doc validate server vat is {0}".format(doc))
-	msg = validate_vat(doc, nif)
+	msg = validate_vat(doc)
 	if(nif and msg.get("status", "") != 'OK'):
 		frappe.throw(_("Tax Identification Number {0} not valid").format(nif),frappe.DataError)
 
