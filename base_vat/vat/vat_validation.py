@@ -310,25 +310,28 @@ def validate_vat(doc):
 		doc = json.loads(doc)
 
 	nif = doc.get('vat_or_nif')
+	if nif:
+		nif = nif.strip(' \t\n\r')
 	company = frappe.defaults.get_defaults().get("company")
 	ret = validation.button_check_vat(nif, company)
 	_logger.info("whitelist nif {0}".format(nif))
-	check_duplo_vat(doc)
+	check_duplo_vat(doc, nif)
 	return ret
 
 
 def validate_server_vat(doc, method):
 
 	nif = doc.get('vat_or_nif')
+	if nif:
+		nif = nif.strip(' \t\n\r')
 	_logger.info("doc validate server vat is {0}".format(doc))
-	msg = validate_vat(doc)
+	msg = validate_vat(doc, nif)
 	if(nif and msg.get("status", "") != 'OK'):
 		frappe.throw(_("Tax Identification Number {0} not valid").format(nif),frappe.DataError)
 
 
-def check_duplo_vat(doc):
+def check_duplo_vat(doc, nif):
 
-	nif = doc.get('vat_or_nif')
 	if not nif:#is possible nif to be null
 		return
 
