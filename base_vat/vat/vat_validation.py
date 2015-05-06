@@ -21,73 +21,73 @@ except ImportError:
 
 
 _ref_vat = {
-    'at': 'ATU12345675',
-    'be': 'BE0477472701',
-    'bg': 'BG1234567892',
-    'ch': 'CHE-123.456.788 TVA or CH TVA 123456', #Swiss by Yannick Vaucher @ Camptocamp
-    'cy': 'CY12345678F',
-    'cz': 'CZ12345679',
-    'de': 'DE123456788',
-    'dk': 'DK12345674',
-    'ee': 'EE123456780',
-    'el': 'EL12345670',
-    'es': 'ESA12345674',
-    'fi': 'FI12345671',
-    'fr': 'FR32123456789',
-    'gb': 'GB123456782',
-    'gr': 'GR12345670',
-    'hu': 'HU12345676',
-    'hr': 'HR01234567896', # Croatia, contributed by Milan Tribuson
-    'ie': 'IE1234567T',
-    'it': 'IT12345670017',
-    'lt': 'LT123456715',
-    'lu': 'LU12345613',
-    'lv': 'LV41234567891',
-    'mt': 'MT12345634',
-    'mx': 'MXABC123456T1B',
-    'nl': 'NL123456782B90',
-    'no': 'NO123456785',
-    'pl': 'PL1234567883',
-    'pt': 'PT123456789',
-    'ro': 'RO1234567897',
-    'se': 'SE123456789701',
-    'si': 'SI12345679',
-    'sk': 'SK0012345675',
+	'at': 'ATU12345675',
+	'be': 'BE0477472701',
+	'bg': 'BG1234567892',
+	'ch': 'CHE-123.456.788 TVA or CH TVA 123456', #Swiss by Yannick Vaucher @ Camptocamp
+	'cy': 'CY12345678F',
+	'cz': 'CZ12345679',
+	'de': 'DE123456788',
+	'dk': 'DK12345674',
+	'ee': 'EE123456780',
+	'el': 'EL12345670',
+	'es': 'ESA12345674',
+	'fi': 'FI12345671',
+	'fr': 'FR32123456789',
+	'gb': 'GB123456782',
+	'gr': 'GR12345670',
+	'hu': 'HU12345676',
+	'hr': 'HR01234567896', # Croatia, contributed by Milan Tribuson
+	'ie': 'IE1234567T',
+	'it': 'IT12345670017',
+	'lt': 'LT123456715',
+	'lu': 'LU12345613',
+	'lv': 'LV41234567891',
+	'mt': 'MT12345634',
+	'mx': 'MXABC123456T1B',
+	'nl': 'NL123456782B90',
+	'no': 'NO123456785',
+	'pl': 'PL1234567883',
+	'pt': 'PT123456789',
+	'ro': 'RO1234567897',
+	'se': 'SE123456789701',
+	'si': 'SI12345679',
+	'sk': 'SK0012345675',
 }
 
 def exception_to_unicode(e):
-    if (sys.version_info[:2] < (2,6)) and hasattr(e, 'message'):
-        return ustr(e.message)
-    if hasattr(e, 'args'):
-        return "\n".join((ustr(a) for a in e.args))
-    try:
-        return unicode(e)
-    except Exception:
-        return u"Unknown message"
+	if (sys.version_info[:2] < (2,6)) and hasattr(e, 'message'):
+		return ustr(e.message)
+	if hasattr(e, 'args'):
+		return "\n".join((ustr(a) for a in e.args))
+	try:
+		return unicode(e)
+	except Exception:
+		return u"Unknown message"
 
 def get_encodings(hint_encoding='utf-8'):
-    fallbacks = {
-        'latin1': 'latin9',
-        'iso-8859-1': 'iso8859-15',
-        'cp1252': '1252',
-    }
-    if hint_encoding:
-        yield hint_encoding
-        if hint_encoding.lower() in fallbacks:
-            yield fallbacks[hint_encoding.lower()]
+	fallbacks = {
+		'latin1': 'latin9',
+		'iso-8859-1': 'iso8859-15',
+		'cp1252': '1252',
+	}
+	if hint_encoding:
+		yield hint_encoding
+		if hint_encoding.lower() in fallbacks:
+			yield fallbacks[hint_encoding.lower()]
 
-    # some defaults (also taking care of pure ASCII)
-    for charset in ['utf8','latin1']:
-        if not hint_encoding or (charset.lower() != hint_encoding.lower()):
-            yield charset
+	# some defaults (also taking care of pure ASCII)
+	for charset in ['utf8','latin1']:
+		if not hint_encoding or (charset.lower() != hint_encoding.lower()):
+			yield charset
 
-    from locale import getpreferredencoding
-    prefenc = getpreferredencoding()
-    if prefenc and prefenc.lower() != 'utf-8':
-        yield prefenc
-        prefenc = fallbacks.get(prefenc.lower())
-        if prefenc:
-            yield prefenc
+	from locale import getpreferredencoding
+	prefenc = getpreferredencoding()
+	if prefenc and prefenc.lower() != 'utf-8':
+		yield prefenc
+		prefenc = fallbacks.get(prefenc.lower())
+		if prefenc:
+			yield prefenc
 
 def ustr(value, hint_encoding='utf-8', errors='strict'):
 	"""This method is similar to the builtin `unicode`, except
@@ -165,7 +165,7 @@ class VatValidation():
 			# country code or empty VAT number), so we fall back to the simple check.
 			return self.simple_vat_check(country_code, vat_number)
 
-	def button_check_vat(self,nif, company):
+	def button_check_vat(self, nif, company):
 		self.company = company
 
 		if not self.check_vat(nif):
@@ -303,44 +303,44 @@ validation = VatValidation()
 
 @frappe.whitelist(allow_guest=True)
 def validate_vat(doc):
-    if isinstance(doc, basestring):
-        doc = json.loads(doc)
+	if isinstance(doc, basestring):
+		doc = json.loads(doc)
 
-    nif = doc.get('vat_or_nif')
-    company = doc.get('company')
-    ret = validation.button_check_vat(nif, company)
-    _logger.info("whitelist nif {0}".format(nif))
-    check_duplo_vat(doc)
-    return ret 
+	nif = doc.get('vat_or_nif')
+	company = frappe.defaults.get_defaults().get("company")
+	ret = validation.button_check_vat(nif, company)
+	_logger.info("whitelist nif {0}".format(nif))
+	check_duplo_vat(doc)
+	return ret
 
 
 def validate_server_vat(doc, method):
-    
-    nif = doc.get('vat_or_nif')
-    _logger.info("doc validate server vat is {0}".format(doc))
-    if(nif and validate_vat(doc) != 'OK'):
-        frappe.throw(_("Tax Identification Number {0} not valid").format(nif),frappe.DataError)
+
+	nif = doc.get('vat_or_nif')
+	_logger.info("doc validate server vat is {0}".format(doc))
+	if(nif and validate_vat(doc) != 'OK'):
+		frappe.throw(_("Tax Identification Number {0} not valid").format(nif),frappe.DataError)
 
 
 def check_duplo_vat(doc):
-    
-    nif = doc.get('vat_or_nif')
-    if not nif:#is possible nif to be null
-        return
-    
-    _logger.info("doc is {0}".format(doc))
-    
-    customer = frappe.db.sql("""select customer_name from `tabCustomer` where vat_or_nif = %s """, (nif), as_dict=True)#only one must exist
-    _logger.info("cursor for customer_name is {0}".format(customer))
-    customer_name = customer[0].get('customer_name') if len(customer) > 0 else None
-    cname = doc.get("customer_name")
-    if(customer_name and customer_name == cname):#nif already exist but is for the same customer
-        return
-    elif(customer_name):#nif already exists but another customer already has it
-        frappe.throw(_("Tax Identification Number {nif} already exist for customer {name} check if the name is correct").format(nif=nif, name=customer_name),frappe.DataError)
-    else:#no customer exist with this nif. Save it
-        return
-    
-    
-    
+
+	nif = doc.get('vat_or_nif')
+	if not nif:#is possible nif to be null
+		return
+
+	_logger.info("doc is {0}".format(doc))
+
+	customer = frappe.db.sql("""select customer_name from `tabCustomer` where vat_or_nif = %s """, (nif), as_dict=True)#only one must exist
+	_logger.info("cursor for customer_name is {0}".format(customer))
+	customer_name = customer[0].get('customer_name') if len(customer) > 0 else None
+	cname = doc.get("customer_name")
+	if(customer_name and customer_name == cname):#nif already exist but is for the same customer
+		return
+	elif(customer_name):#nif already exists but another customer already has it
+		frappe.throw(_("Tax Identification Number {nif} already exist for customer {name} check if the name is correct").format(nif=nif, name=customer_name),frappe.DataError)
+	else:#no customer exist with this nif. Save it
+		return
+
+
+
 
