@@ -197,6 +197,9 @@ class VatValidation():
 			#  it starts with 2 letters
 			#  has more than 3 characters
 			return cn[0] in string.ascii_lowercase and cn[1] in string.ascii_lowercase
+
+		if not nif:
+			return "There is no nif to check."
 		vat_country, vat_number = self._split_vat(nif)
 		vat_no = "'CC##' (CC=Country Code, ##=VAT Number)"
 		if default_vat_check(vat_country, vat_number):
@@ -318,7 +321,8 @@ def validate_server_vat(doc, method):
 
 	nif = doc.get('vat_or_nif')
 	_logger.info("doc validate server vat is {0}".format(doc))
-	if(nif and validate_vat(doc) != 'OK'):
+	msg = validate_vat(doc)
+	if(nif and msg.get("status", "") != 'OK'):
 		frappe.throw(_("Tax Identification Number {0} not valid").format(nif),frappe.DataError)
 
 
@@ -332,6 +336,7 @@ def check_duplo_vat(doc):
 
 	customer = frappe.db.sql("""select customer_name from `tabCustomer` where vat_or_nif = %s """, (nif), as_dict=True)#only one must exist
 	_logger.info("cursor for customer_name is {0}".format(customer))
+	print "customer {}".format(customer)
 	customer_name = customer[0].get('customer_name') if len(customer) > 0 else None
 	cname = doc.get("customer_name")
 	if(customer_name and customer_name == cname):#nif already exist but is for the same customer
