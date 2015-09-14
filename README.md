@@ -11,7 +11,7 @@ This is un adaptation from this work: [https://github.com/odoo/odoo/tree/master/
 ### Instalation
 
 1. bench get-app base_vat [https://github.com/saguas/frappe_base_vat.git](https://github.com/saguas/frappe_base_vat.git)
-2. bench frappe --install_app base_vat _your_site_name_ or install from frappe desk installer.
+2. bench install-app base_vat [_your_site_name_] or install from frappe desk installer.
 
 ### How to:
 
