@@ -340,7 +340,7 @@ def check_duplo_vat(doc, nif):
 
 	customer = frappe.db.sql("""select customer_name from `tabCustomer` where vat_or_nif = %s """, (nif), as_dict=True)#only one must exist
 	_logger.info("cursor for customer_name is {0}".format(customer))
-	print "customer {}".format(customer)
+
 	customer_name = customer[0].get('customer_name') if len(customer) > 0 else None
 	cname = doc.get("customer_name")
 	if(customer_name and customer_name == cname):#nif already exist but is for the same customer
