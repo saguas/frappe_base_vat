@@ -336,9 +336,6 @@ def validate_server_vat(doc, method):
 
 def check_duplo_vat(doc, nif):
 
-	if not nif:#is possible nif to be null
-		return
-
 	_logger.info("doc is {0}".format(doc))
 
 	customer = frappe.db.sql("""select customer_name from `tabCustomer` where vat_or_nif = %s """, (nif), as_dict=True)#only one must exist
