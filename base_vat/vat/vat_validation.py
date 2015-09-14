@@ -306,16 +306,20 @@ validation = VatValidation()
 
 @frappe.whitelist(allow_guest=True)
 def validate_vat(doc):
+	from frappe.utils import get_defaults
 	if isinstance(doc, basestring):
 		doc = json.loads(doc)
 
 	nif = doc.get('vat_or_nif')
 	if nif:
 		nif = nif.strip(' \t\n\r')
-	company = frappe.defaults.get_defaults().get("company")
-	ret = validation.button_check_vat(nif, company)
-	_logger.info("whitelist nif {0}".format(nif))
-	check_duplo_vat(doc, nif)
+		company = get_defaults().get("company")
+		ret = validation.button_check_vat(nif, company)
+		_logger.info("whitelist nif {0}".format(nif))
+		check_duplo_vat(doc, nif)
+	else:
+		ret = {"msg":_('You need to provide a VAT number first.'), "status": "ERRO"}
+
 	return ret
 
 
