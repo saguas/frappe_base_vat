@@ -16,11 +16,6 @@ doc_events = {
 	}
 }
 
-#fixtures = [
-#	["Custom Script", {"name":["Customer-Client"]}],
-#	["Custom Field", {"name":["Customer-vat_or_nif", "Company-vies_vat_check", "Customer-validate_vat"]}]
-#]
-
 fixtures = [
 	"Custom Script",
 	"Custom Field"
