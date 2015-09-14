@@ -318,7 +318,7 @@ def validate_vat(doc):
 		_logger.info("whitelist nif {0}".format(nif))
 		check_duplo_vat(doc, nif)
 	else:
-		ret = {"msg":_('You need to provide a VAT number first.'), "status": "ERRO"}
+		ret = {"msg":_('You need to provide a VAT number first.'), "status": "ERROR"}
 
 	return ret
 
