@@ -1,0 +1,65 @@
+{#{% import 'templates/includes/macro_utils.xhtml' as u with context %}#}
+
+
+
+{% block teste2 %}
+{% meteor teste2 %}
+<template name="teste2">
+    {% do "teste log 22" | mlog %}
+    <p>From Ekaiser teste2 template in true part!!!</p>
+</template>
+{% endmeteor %}
+{% endblock %}
+
+
+{% block teste10 %}
+{%- meteor teste10 -%}
+<template name="teste10">
+    <p>From Ekaiser teste10 template!!!</p>
+    {{; Start of a section}}
+    {{.if fullLogin}}
+        <p>From Ekaiser teste10 template in true part!!!</p>
+    {{else}}
+        <p>From Ekaiser teste10 template in else part!!! {{%{prag}}} in {{developer_mode}}</p>
+    {{/if}}
+</template>
+{%- endmeteor -%}
+{% endblock %}
+
+{% block teste20 %}
+{%- meteor teste20 -%}
+<template name="teste20">
+    {% do "teste log 20" | mlog %}
+    <p>From Ekaiser teste20 template!!!</p>
+</template>
+{% endmeteor %}
+{% endblock %}
+
+
+
+{#{% block teste2 %}#}
+    {#{#{% call u.template("teste2") %}#}
+    {#{%- template name="teste2" %}#}
+     {#   <p>From Ekaiser teste2 template!!!</p>#}
+    {#{% endtemplate %}#}
+    {#{% endcall %}#}
+{#{% endblock %}#}
+
+
+{#{% block teste10 %}#}
+    {#{% call u.template("teste10") %}#}
+    {#{%- template name="teste10" %}#}
+      {#  <p>From Ekaiser teste10 template!!!</p>#}
+    {#{% endtemplate %}#}
+    {#{% endcall %}#}
+{#{% endblock %}#}
+
+
+
+{#{% block teste20 %}#}
+    {#{% call u.template("teste20") %}#}
+    {#{%- template name="teste20" %}#}
+      {#  <p>From Ekaiser teste20 template!!!</p>#}
+    {#{% endcall %}#}
+    {#{% endtemplate %}#}
+{#{% endblock %}#}

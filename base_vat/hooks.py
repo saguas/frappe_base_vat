@@ -8,7 +8,6 @@ app_email = "luisfmfernandes@gmail.com"
 app_url = "http://localhost"
 app_version = "0.0.1"
 
-
 app_include_js = "/assets/base_vat/js/vat_validation.js"
 
 doc_events = {
@@ -17,7 +16,12 @@ doc_events = {
 	}
 }
 
+#fixtures = [
+#	["Custom Script", {"name":["Customer-Client"]}],
+#	["Custom Field", {"name":["Customer-vat_or_nif", "Company-vies_vat_check", "Customer-validate_vat"]}]
+#]
+
 fixtures = [
-	["Custom Script", {"name":["Customer-Client"]}],
-	["Custom Field", {"name":["Customer-vat_or_nif", "Company-vies_vat_check", "Customer-validate_vat"]}]
+	"Custom Script",
+	"Custom Field"
 ]

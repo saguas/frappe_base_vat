@@ -1,0 +1,11 @@
+[
+ {
+  "docstatus": 0, 
+  "doctype": "Custom Script", 
+  "dt": "Customer", 
+  "modified": "2015-09-13 14:54:53.831266", 
+  "name": "Customer-Client", 
+  "script": "cur_frm.cscript.custom_onload = function(){\n     cur_frm.cscript.vatapp = new frappe.base_vat.Customer();\n}\n\ncur_frm.cscript.custom_refresh = function(doc, dt, dn) {\n     cur_frm.cscript.vatapp.refresh(doc, dt, dn);\n};\n\ncur_frm.cscript[\"vat_or_nif\"] = function(doc, dt, dn){\n    cur_frm.cscript.vatapp.on_vatchange(doc, dt, dn);\n}\n\ncur_frm.cscript[\"validate_vat\"] = function(doc, dt, dn){\n    cur_frm.cscript.vatapp.on_button_validate_vat(doc, dt, dn);\n}", 
+  "script_type": "Client"
+ }
+]

@@ -1,0 +1,1 @@
+console.log("teste 10 in ekaiser 110")
