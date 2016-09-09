@@ -167,7 +167,7 @@ class VatValidation():
 
 	def button_check_vat(self, nif, vies_vat, company):
 		self.company = company
-		self.vies_vat = vies_vat
+		self.check_vies_vat = vies_vat
 
 		if not self.check_vat(nif):
 			msg = self._construct_constraint_msg(nif)
@@ -178,9 +178,8 @@ class VatValidation():
 	def check_vat(self, nif):
 		#user_company_vies = frappe.db.get_value('Company', self.company, 'vies_vat_check')
 		#user_company_vies = frappe.db.get_value('Customer', {"customer_name": self.vies_vat_check}, 'vies_vat_check')#'vies_vat_check')
-		print "user_company_vies {}".format(self.vies_vat)
 		#if user_company_vies:
-		if self.vies_vat:
+		if self.check_vies_vat:
 			# force full VIES online check
 			check_func = self.vies_vat_check
 		else:
