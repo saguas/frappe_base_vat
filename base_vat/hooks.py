@@ -17,7 +17,7 @@ doc_events = {
 }
 
 fixtures = [
-	{"doctype": "Custom Field", "filters": [["name","in" ,["customer-vies_vat_check", "Customer-vat_or_nif", "Customer-validate_vat"]]]}
+	{"doctype": "Custom Field", "filters": [["name","in" ,["customer-vies_vat_check", "Customer-vat_or_nif", "Customer-validate_vat", "Company-vies_vat_check"]]]}
 	#"Custom Script",
 	#"Custom Field"
 ]
