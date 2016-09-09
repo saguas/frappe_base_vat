@@ -309,6 +309,10 @@ validation = VatValidation()
 
 @frappe.whitelist(allow_guest=True)
 def validate_vat(doc):
+	"""
+		doc must have at least the following fields
+		vat_or_nif (String), customer_name (String) and vies_vat_check (Boolean).
+	"""
 	from frappe.utils import get_defaults
 	if isinstance(doc, basestring):
 		doc = json.loads(doc)
