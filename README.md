@@ -33,7 +33,7 @@ Because sometimes customers are registers by another name, in that case base vat
 
 ### From another app
 
-If you need check the vat number on your own module, just call the whitelist function <i>validate_vat</i> (PATH: base_vat.vat.vat_validation.validate_vat) and pass a dictionary, at least, with the following fields: vat_or_nif (String), customer_name (String) and vies_vat_check (Boolean).
+If you need to verify the vat number on your own module, just call the whitelist function <i>validate_vat</i> (PATH: base_vat.vat.vat_validation.validate_vat) and pass a dictionary, at least, with the following fields: vat_or_nif (String), customer_name (String) and vies_vat_check (Boolean).
 
 ### Frappe Framework
 
