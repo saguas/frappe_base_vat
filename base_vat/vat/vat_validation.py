@@ -140,7 +140,7 @@ class VatValidation():
 		'''
 		if not ustr(country_code).encode('utf-8').isalpha():
 			return False
-		check_func_name = 'check_vat_' + country_code
+		check_func_name = 'check_vat_' + country_code.lower()
 		check_func = getattr(self, check_func_name, None) or \
 						getattr(vatnumber, check_func_name, None)
 		if not check_func:
@@ -165,8 +165,9 @@ class VatValidation():
 			# country code or empty VAT number), so we fall back to the simple check.
 			return self.simple_vat_check(country_code, vat_number)
 
-	def button_check_vat(self, nif, company):
+	def button_check_vat(self, nif, vies_vat, company):
 		self.company = company
+		self.vies_vat = vies_vat
 
 		if not self.check_vat(nif):
 			msg = self._construct_constraint_msg(nif)
@@ -175,8 +176,11 @@ class VatValidation():
 		return {"msg":_('This VAT number is valid.'), "status": "OK"}
 
 	def check_vat(self, nif):
-		user_company_vies = frappe.db.get_value('Company', self.company, 'vies_vat_check')
-		if user_company_vies:
+		#user_company_vies = frappe.db.get_value('Company', self.company, 'vies_vat_check')
+		#user_company_vies = frappe.db.get_value('Customer', {"customer_name": self.vies_vat_check}, 'vies_vat_check')#'vies_vat_check')
+		print "user_company_vies {}".format(self.vies_vat)
+		#if user_company_vies:
+		if self.vies_vat:
 			# force full VIES online check
 			check_func = self.vies_vat_check
 		else:
@@ -314,7 +318,7 @@ def validate_vat(doc):
 	if nif:
 		nif = nif.strip(' \t\n\r')
 		company = get_defaults().get("company")
-		ret = validation.button_check_vat(nif, company)
+		ret = validation.button_check_vat(nif, doc.get("vies_vat_check"), company)
 		_logger.info("whitelist nif {0}".format(nif))
 		check_duplo_vat(doc, nif)
 	else:
