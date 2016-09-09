@@ -9,7 +9,7 @@ import sys
 from frappe import _
 from frappe.model.document import Document
 
-_logger = frappe.get_logger(__name__)
+_logger = frappe.logger(__name__)
 
 
 try:
